@@ -32,6 +32,13 @@ def sub_wise_average_marks():
     for sub, mark in zip(subjects, avg_marks):
         print(sub,"\b:", mark)
 
+def total_marks():
+    print("\nTotal marks:")
+    total = np.sum(marks, axis=1)
+    for s, t in zip(students, total):
+        print(s,"\b:", t)
+
+
 def student_avg():
     print("\nStudent average:")
     s_avg = np.mean(marks, axis=1)
@@ -54,8 +61,13 @@ print("Total Subjects: ",total_sub)
 sub_wise_highest_marks()
 sub_wise_lowest_marks()
 sub_wise_average_marks()
+total_marks()
 student_avg()
 
+print("\nAbove 80: ", marks[marks >= 80])
+print("Total above 80: ", np.sum([marks >= 80]))
+print("Standard Deviation (sub): ", np.std(marks, axis=0))
+print("Standard Deviation (stu):", np.std(marks, axis=1))
 
 
 
