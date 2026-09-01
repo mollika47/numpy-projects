@@ -8,3 +8,14 @@ sales = np.array([
     [18, 20, 17, 22]   # April
 ])
 
+def products_info():
+    total_products = np.size(products)
+    print("Total Products: ", total_products)
+
+    total_months = np.size(sales, axis=0)
+    print("Total Months: ", total_months)
+
+    print("Array Shape: ", np.shape(sales))
+
+
+products_info()
