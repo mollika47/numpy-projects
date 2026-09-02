@@ -12,3 +12,31 @@ salaries = np.array([
     [30000, 31000, 31000, 35000],
     [20000, 20000, 20000, 25000]
 ])
+
+def employee_analysis():
+    print("\nAverage salary of each employee:")
+    avg_salary = np.mean(salaries, axis=1)
+    for emp, avg in zip(employees, avg_salary):
+        print(emp,"\b:", avg)
+
+    print("\nHighest salary of each employee:")
+    max_salary = np.max(salaries, axis=1)
+    for emp, max_s in zip(employees, max_salary):
+        print(emp, "\b:", max_s)
+
+    print("\nLowest salary of each employee:")
+    min_salary = np.min(salaries, axis=1)
+    for emp, min_s in zip(employees, min_salary):
+        print(emp, "\b:", min_s)
+
+    print("\nEmployee with the highest overall average salary:")
+    max_avg_s = np.max(avg_salary)
+    print(employees[np.argmax(avg_salary)], "\b:", max_avg_s)
+
+    print("\nEmployee with the lowest overall average salary:")
+    min_avg_s = np.min(avg_salary)
+    print(employees[np.argmin(avg_salary)], "\b:", min_avg_s)
+
+print("-------- Employee Salary Analyzer --------")
+
+employee_analysis()
