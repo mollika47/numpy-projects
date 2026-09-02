@@ -49,7 +49,23 @@ def month_analysis():
     for m, max_s, emp in zip(months, monthly_max_s, max_sal_emp):
         print(f"{m}: {max_s} ['{emp}']")
 
+    print("\nTotal salary paid each month:")
+    monthly_total = np.sum(salaries, axis=0)
+    for m, t in zip(months, monthly_total):
+        print(f"{m}: {t}")
+
+def overall_analysis():
+    overall_avg = np.mean(salaries)
+    print("\nOverall Average:", overall_avg)
+    print("Employees whose average salary is above the overall average:", employees[np.mean(salaries, axis=1) > overall_avg])
+
+    print("Total salary paid across all 4 months:", np.sum(salaries))
+
+    print("Standard deviation of salaries:", np.std(salaries))
+
+
 print("-------- Employee Salary Analyzer --------")
 
 employee_analysis()
 month_analysis()
+overall_analysis()
