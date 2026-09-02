@@ -37,6 +37,19 @@ def employee_analysis():
     min_avg_s = np.min(avg_salary)
     print(employees[np.argmin(avg_salary)], "\b:", min_avg_s)
 
+def month_analysis():
+    print("\nAverage salary for each month:")
+    monthly_avg = np.mean(salaries, axis=0)
+    for m, avg in zip(months, monthly_avg):
+        print(m, "\b:", avg)
+
+    print("\nHighest salary paid in each month:")
+    monthly_max_s = np.max(salaries, axis=0)
+    max_sal_emp = employees[np.argmax(salaries, axis=0)]
+    for m, max_s, emp in zip(months, monthly_max_s, max_sal_emp):
+        print(f"{m}: {max_s} ['{emp}']")
+
 print("-------- Employee Salary Analyzer --------")
 
 employee_analysis()
+month_analysis()
