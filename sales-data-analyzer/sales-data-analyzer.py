@@ -16,6 +16,7 @@ def products_info():
     total_months = np.size(sales, axis=0)
     print("Total Months:", total_months)
 
+    print("Total Elements:", np.size(sales))
     print("Array Shape:", np.shape(sales))
 
 def product_analysis():
@@ -73,3 +74,20 @@ print("-------- Sales Data Analyzer --------\n")
 products_info()
 product_analysis()
 month_analysis()
+
+# filtering
+print("\nSales greater than 18:", sales[sales > 18])
+print("Sales less than 12:", sales[sales < 12])
+print("Sales between 12 and 18:", sales[(sales >= 12) & (sales <= 18)])
+
+#sorting
+print("Sort sales:", np.sort(sales))
+
+#slicing
+print("January sales:", sales[:1])
+print("Laptop sales:", sales[:, 0])
+print("February + March:\n", sales[1:3])
+print("Phone + Tablet sales:\n", sales[:, 1:3])
+
+#broadcasting
+print("Every product sales increased by 10%:\n", sales + (sales * 0.1))
