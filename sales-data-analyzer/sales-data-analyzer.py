@@ -39,6 +39,14 @@ def product_analysis():
     for p, l in zip(products, lowest):
         print(p,"\b:", l)
 
+    print("\nBest-selling Product:")
+    best = np.max(total)
+    print(products[np.argmax(total)],"\b:", best)
+
+    print("\nLowest-selling Product:")
+    low = np.min(total)
+    print(products[np.argmin(total)], "\b:", low)
+
 def month_analysis():
     print("\nTotal Sales of Each Month:")
     total = np.sum(sales, axis=1)
