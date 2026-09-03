@@ -17,31 +17,31 @@ def employee_analysis():
     print("\nAverage salary of each employee:")
     avg_salary = np.mean(salaries, axis=1)
     for emp, avg in zip(employees, avg_salary):
-        print(emp,"\b:", avg)
+        print(f"{emp}: {avg}")
 
     print("\nHighest salary of each employee:")
     max_salary = np.max(salaries, axis=1)
     for emp, max_s in zip(employees, max_salary):
-        print(emp, "\b:", max_s)
+        print(f"{emp}: {max_s}")
 
     print("\nLowest salary of each employee:")
     min_salary = np.min(salaries, axis=1)
     for emp, min_s in zip(employees, min_salary):
-        print(emp, "\b:", min_s)
+        print(f"{emp}: {min_s}")
 
     print("\nEmployee with the highest overall average salary:")
     max_avg_s = np.max(avg_salary)
-    print(employees[np.argmax(avg_salary)], "\b:", max_avg_s)
+    print(f"{employees[np.argmax(avg_salary)]}: {max_avg_s}")
 
     print("\nEmployee with the lowest overall average salary:")
     min_avg_s = np.min(avg_salary)
-    print(employees[np.argmin(avg_salary)], "\b:", min_avg_s)
+    print(f"{employees[np.argmin(avg_salary)]}: {min_avg_s}")
 
 def month_analysis():
     print("\nAverage salary for each month:")
     monthly_avg = np.mean(salaries, axis=0)
     for m, avg in zip(months, monthly_avg):
-        print(m, "\b:", avg)
+        print(f"{m}: {avg}")
 
     print("\nHighest salary paid in each month:")
     monthly_max_s = np.max(salaries, axis=0)
@@ -63,9 +63,15 @@ def overall_analysis():
 
     print("Standard deviation of salaries:", np.std(salaries))
 
+def normalization():
+    max_val = np.max(salaries)
+    min_val = np.min(salaries)
+    norm = np.round((salaries - min_val) / (max_val - min_val), 2)
+    print("\nNormalized Salaries:\n",norm)
 
 print("-------- Employee Salary Analyzer --------")
 
 employee_analysis()
 month_analysis()
 overall_analysis()
+normalization()
