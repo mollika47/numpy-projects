@@ -64,11 +64,16 @@ def pixel_analysis():
 #     neg_g = 255 - ori
 #     Image.fromarray(neg_g).save("image/GTA VI(grayscale-to-inverted).jpg")
 
-def threshold():
-    loaded_img = np.array(Image.open("image/GTA VI(grayscale).jpg"))
-    threshold_point = 128
-    t_img = np.where(loaded_img > threshold_point, 255, 0).astype(np.uint8)
-    Image.fromarray(t_img).save("image/GTA VI(threshold).jpg")
+# def threshold():
+#     loaded_img = np.array(Image.open("image/GTA VI(grayscale).jpg"))
+#     threshold_point = 128
+#     t_img = np.where(loaded_img > threshold_point, 255, 0).astype(np.uint8)
+#     Image.fromarray(t_img).save("image/GTA VI(threshold).jpg")
+
+def resize():
+    full_hd = img[::2, ::2]
+    print("\nresized to full HD",full_hd.shape)
+    Image.fromarray(full_hd).save("image/GTA VI(res_full-HD).jpg")
 
 
 
@@ -78,6 +83,7 @@ pixel_analysis()
 # grayscale()
 # adjustments(50)
 # inverted()
-threshold()
+# threshold()
+resize()
 
 
