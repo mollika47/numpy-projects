@@ -47,6 +47,16 @@ def crop_image():
     right_65 = img[:, int(w * 0.35):]
     Image.fromarray(right_65).show()
 
+def grayscale():
+    gray = np.mean(img, axis=2).astype(np.uint8)
+    Image.fromarray(gray).save("image/GTA VI(grayscale).jpg")
+
+    print(gray)
+    print(gray.dtype)
+    print(gray.shape)
+    print(gray[0,0])
+
 inspect_image()
 pixel_analysis()
 crop_image()
+grayscale()
