@@ -11,7 +11,7 @@ def inspect_image():
     print(f"Channels: {c}")
 
 def pixel_analysis():
-    print("pixel analysis:")
+    print("\npixel analysis:")
     print("Data Type:", img.dtype)
     print("Minimum pixel value:", np.min(img))
     print("Maximum pixel value:", np.max(img))
@@ -57,17 +57,27 @@ def pixel_analysis():
 #     darker = np.clip(img.astype(np.int16) - amount, 0, 255).astype(np.uint8)
 #     Image.fromarray(darker).save("image/GTA VI(darker).jpg")
 
-def inverted():
-    neg = 255 - img
-    Image.fromarray(neg).save("image/GTA VI(original-to-inverted).jpg")
-    ori = np.array(Image.open("image/GTA VI(grayscale).jpg"))
-    neg_g = 255 - ori
-    Image.fromarray(neg_g).save("image/GTA VI(grayscale-to-inverted).jpg")
+# def inverted():
+#     neg = 255 - img
+#     Image.fromarray(neg).save("image/GTA VI(original-to-inverted).jpg")
+#     ori = np.array(Image.open("image/GTA VI(grayscale).jpg"))
+#     neg_g = 255 - ori
+#     Image.fromarray(neg_g).save("image/GTA VI(grayscale-to-inverted).jpg")
+
+def threshold():
+    loaded_img = np.array(Image.open("image/GTA VI(grayscale).jpg"))
+    threshold_point = 128
+    t_img = np.where(loaded_img > threshold_point, 255, 0).astype(np.uint8)
+    Image.fromarray(t_img).save("image/GTA VI(threshold).jpg")
+
+
 
 inspect_image()
 pixel_analysis()
 # crop_image()
 # grayscale()
 # adjustments(50)
-inverted()
+# inverted()
+threshold()
+
 
