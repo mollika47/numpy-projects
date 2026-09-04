@@ -72,10 +72,12 @@ def pixel_analysis():
 
 def resize():
     full_hd = img[::2, ::2]
-    print("\nresized to full HD",full_hd.shape)
+    print("\nresized to ", full_hd.shape)
     Image.fromarray(full_hd).save("image/GTA VI(res_full-HD).jpg")
 
-
+    hd = img[::3, ::3]
+    print("\nresized to ", hd.shape)
+    Image.fromarray(hd).save("image/GTA VI(res_HD).jpg")
 
 inspect_image()
 pixel_analysis()
@@ -84,6 +86,6 @@ pixel_analysis()
 # adjustments(50)
 # inverted()
 # threshold()
-resize()
+# resize()
 
 
