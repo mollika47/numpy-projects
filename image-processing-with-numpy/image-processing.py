@@ -22,6 +22,7 @@ def crop_image():
     h, w, c = img.shape
     center_x = w // 2
     center_y = h // 2
+
     center_sqr = img[(center_y-500):(center_y+500), (center_x-500):(center_x+500)]
     Image.fromarray(center_sqr).show()
 
@@ -37,7 +38,14 @@ def crop_image():
     right_half = img[:, center_x:]
     Image.fromarray(right_half).show()
 
+    top_25 = img[:int(h * 0.25), :]
+    Image.fromarray(top_25).show()
 
+    bottom_left_30 = img[int(h * 0.3):, :int(w * 0.3)]
+    Image.fromarray(bottom_left_30).show()
+
+    right_65 = img[:, int(w * 0.35):]
+    Image.fromarray(right_65).show()
 
 inspect_image()
 pixel_analysis()
