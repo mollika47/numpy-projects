@@ -2,7 +2,6 @@ from PIL import Image
 import numpy as np
 
 img = np.array(Image.open("image/GTA VI(original).jpg"))
-print(img)
 
 def inspect_image():
     print("Image Properties:")
@@ -51,15 +50,24 @@ def pixel_analysis():
 #     gray = np.mean(img, axis=2).astype(np.uint8)
 #     Image.fromarray(gray).save("image/GTA VI(grayscale).jpg")
 
-def adjustments(amount):
-    bright = np.clip(img.astype(np.uint16) + amount, 0, 255).astype(np.uint8)
-    Image.fromarray(bright).save("image/GTA VI(brighter).jpg")
+# def adjustments(amount):
+#     bright = np.clip(img.astype(np.uint16) + amount, 0, 255).astype(np.uint8)
+#     Image.fromarray(bright).save("image/GTA VI(brighter).jpg")
+#
+#     darker = np.clip(img.astype(np.int16) - amount, 0, 255).astype(np.uint8)
+#     Image.fromarray(darker).save("image/GTA VI(darker).jpg")
 
-    darker = np.clip(img.astype(np.int16) - amount, 0, 255).astype(np.uint8)
-    Image.fromarray(darker).save("image/GTA VI(darker).jpg")
+def inverted():
+    neg = 255 - img
+    Image.fromarray(neg).save("image/GTA VI(original-to-inverted).jpg")
+    ori = np.array(Image.open("image/GTA VI(grayscale).jpg"))
+    neg_g = 255 - ori
+    Image.fromarray(neg_g).save("image/GTA VI(grayscale-to-inverted).jpg")
 
 inspect_image()
 pixel_analysis()
 # crop_image()
 # grayscale()
-adjustments(50)
+# adjustments(50)
+inverted()
+
