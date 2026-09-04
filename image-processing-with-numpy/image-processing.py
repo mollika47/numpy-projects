@@ -18,45 +18,48 @@ def pixel_analysis():
     print("Maximum pixel value:", np.max(img))
     print("Average pixel value:", np.round(np.mean(img), 2))
 
-def crop_image():
-    h, w, c = img.shape
-    center_x = w // 2
-    center_y = h // 2
+# def crop_image():
+#     h, w, c = img.shape
+#     center_x = w // 2
+#     center_y = h // 2
+#
+#     center_sqr = img[(center_y-500):(center_y+500), (center_x-500):(center_x+500)]
+#     Image.fromarray(center_sqr).show()
+#
+#     top_half = img[:center_y, :]
+#     Image.fromarray(top_half).show()
+#
+#     bottom_half = img[center_y:, :]
+#     Image.fromarray(bottom_half).show()
+#
+#     left_half = img[:, :center_x]
+#     Image.fromarray(left_half).show()
+#
+#     right_half = img[:, center_x:]
+#     Image.fromarray(right_half).show()
+#
+#     top_25 = img[:int(h * 0.25), :]
+#     Image.fromarray(top_25).show()
+#
+#     bottom_left_30 = img[int(h * 0.3):, :int(w * 0.3)]
+#     Image.fromarray(bottom_left_30).show()
+#
+#     right_65 = img[:, int(w * 0.35):]
+#     Image.fromarray(right_65).show()
 
-    center_sqr = img[(center_y-500):(center_y+500), (center_x-500):(center_x+500)]
-    Image.fromarray(center_sqr).show()
+# def grayscale():
+#     gray = np.mean(img, axis=2).astype(np.uint8)
+#     Image.fromarray(gray).save("image/GTA VI(grayscale).jpg")
 
-    top_half = img[:center_y, :]
-    Image.fromarray(top_half).show()
+def adjustments(amount):
+    bright = np.clip(img.astype(np.uint16) + amount, 0, 255).astype(np.uint8)
+    Image.fromarray(bright).save("image/GTA VI(brighter).jpg")
 
-    bottom_half = img[center_y:, :]
-    Image.fromarray(bottom_half).show()
-
-    left_half = img[:, :center_x]
-    Image.fromarray(left_half).show()
-
-    right_half = img[:, center_x:]
-    Image.fromarray(right_half).show()
-
-    top_25 = img[:int(h * 0.25), :]
-    Image.fromarray(top_25).show()
-
-    bottom_left_30 = img[int(h * 0.3):, :int(w * 0.3)]
-    Image.fromarray(bottom_left_30).show()
-
-    right_65 = img[:, int(w * 0.35):]
-    Image.fromarray(right_65).show()
-
-def grayscale():
-    gray = np.mean(img, axis=2).astype(np.uint8)
-    Image.fromarray(gray).save("image/GTA VI(grayscale).jpg")
-
-    print(gray)
-    print(gray.dtype)
-    print(gray.shape)
-    print(gray[0,0])
+    darker = np.clip(img.astype(np.int16) - amount, 0, 255).astype(np.uint8)
+    Image.fromarray(darker).save("image/GTA VI(darker).jpg")
 
 inspect_image()
 pixel_analysis()
-crop_image()
-grayscale()
+# crop_image()
+# grayscale()
+adjustments(50)
