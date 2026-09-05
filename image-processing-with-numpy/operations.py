@@ -129,3 +129,25 @@ def adjustments():
 
     else:
         print("Invalid input!")
+
+def resize():
+    print("Image will be resized to 1080p and 720p")
+    full_hd = img[::2, ::2]
+    Image.fromarray(full_hd).show()
+    save_image(full_hd)
+
+    hd = img[::3, ::3]
+    Image.fromarray(hd).show()
+    save_image(hd)
+
+def flip_image():
+    print("Image will be flipped vertically and horizontally")
+
+    vertical_flip = np.flip(img, axis=0)
+    Image.fromarray(vertical_flip).show()
+    save_image(vertical_flip)
+
+    horizontal_flip = np.flip(img, axis=1)
+    Image.fromarray(horizontal_flip).show()
+    save_image(horizontal_flip)
+
