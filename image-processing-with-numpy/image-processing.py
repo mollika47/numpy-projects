@@ -6,12 +6,7 @@ from operations import *
 
 #
 
-# def adjustments(amount):
-#     bright = np.clip(img.astype(np.uint16) + amount, 0, 255).astype(np.uint8)
-#     Image.fromarray(bright).save("image/GTA VI(brighter).jpg")
 #
-#     darker = np.clip(img.astype(np.int16) - amount, 0, 255).astype(np.uint8)
-#     Image.fromarray(darker).save("image/GTA VI(darker).jpg")
 
 #
 

@@ -96,6 +96,7 @@ def filters():
     print("Type t for threshold Image")
 
     choice = input("Type : ")
+
     if choice.lower() == "g":
         g = grayscale()
         save_image(g)
@@ -108,3 +109,23 @@ def filters():
     else:
         print("Invalid input!")
 
+def adjustments():
+    print("To increase brightness: 1")
+    print("To decrease brightness: 2")
+
+    choice = input("Type : ")
+
+    if choice == "1":
+        amount = int(input("Enter amount: "))
+        bright = np.clip(img.astype(np.uint16) + amount, 0, 255).astype(np.uint8)
+        Image.fromarray(bright).show()
+        save_image(bright)
+
+    elif choice == "2":
+        amount = int(input("Enter amount: "))
+        dark = np.clip(img.astype(np.int16) - amount, 0, 255).astype(np.uint8)
+        Image.fromarray(dark).show()
+        save_image(dark)
+
+    else:
+        print("Invalid input!")
