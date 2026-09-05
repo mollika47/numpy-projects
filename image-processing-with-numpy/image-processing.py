@@ -70,14 +70,21 @@ def pixel_analysis():
 #     t_img = np.where(loaded_img > threshold_point, 255, 0).astype(np.uint8)
 #     Image.fromarray(t_img).save("image/GTA VI(threshold).jpg")
 
-def resize():
-    full_hd = img[::2, ::2]
-    print("\nresized to ", full_hd.shape)
-    Image.fromarray(full_hd).save("image/GTA VI(res_full-HD).jpg")
+# def resize():
+#     full_hd = img[::2, ::2]
+#     print("\nresized to ", full_hd.shape)
+#     Image.fromarray(full_hd).save("image/GTA VI(res_full-HD).jpg")
+#
+#     hd = img[::3, ::3]
+#     print("\nresized to ", hd.shape)
+#     Image.fromarray(hd).save("image/GTA VI(res_HD).jpg")
 
-    hd = img[::3, ::3]
-    print("\nresized to ", hd.shape)
-    Image.fromarray(hd).save("image/GTA VI(res_HD).jpg")
+def flip_image():
+    vertical_flip = np.flip(img, axis=0)
+    Image.fromarray(vertical_flip).save("image/flipped_vertical.jpg")
+
+    horizontal_flip = np.flip(img, axis=1)
+    Image.fromarray(horizontal_flip).save("image/flipped_horizontal.jpg")
 
 inspect_image()
 pixel_analysis()
@@ -87,5 +94,6 @@ pixel_analysis()
 # inverted()
 # threshold()
 # resize()
+flip_image()
 
 
