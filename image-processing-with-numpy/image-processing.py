@@ -58,6 +58,7 @@ if __name__ == "__main__":
     print("Show Image Properties: 1")
     print("Show Pixel information: 2")
     print("Crop Image: 3")
+    print("Add Filters: 4")
     op = int(input("Choose operation: "))
 
     if op == 1:
@@ -66,6 +67,8 @@ if __name__ == "__main__":
         pixel_analysis()
     elif op == 3:
         crop_image()
+    elif op == 4:
+        filters()
 
 
 
