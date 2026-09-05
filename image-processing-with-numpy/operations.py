@@ -17,10 +17,13 @@ def pixel_analysis():
     print("Maximum pixel value:", np.max(img))
     print("Average pixel value:", np.round(np.mean(img), 2))
 
-def save_image(op):
-    name = input("File name: ")
-    Image.fromarray(op).save(f"image/user saved/{name}.jpg")
-    print("Image saved!")
+def save_image(file):
+    msg = input("Save image? (y/n): ")
+
+    if msg == "y":
+        name = input("File name: ")
+        Image.fromarray(file).save(f"image/user saved/{name}.jpg")
+        print("Image saved!")
 
 def crop_image():
     h, w, c = img.shape
@@ -39,45 +42,69 @@ def crop_image():
     if cp == 1:
         center_sqr = img[(center_y-500):(center_y+500), (center_x-500):(center_x+500)]
         Image.fromarray(center_sqr).show()
-        save = input("Save image? (y/n): ")
-        if save == "y":
-            save_image(center_sqr)
+        save_image(center_sqr)
 
     elif cp == 2:
         top_half = img[:center_y, :]
         Image.fromarray(top_half).show()
-        save = input("Save image? (y/n): ")
-        if save == "y":
-            save_image(top_half)
+        save_image(top_half)
 
     elif cp == 3:
         bottom_half = img[center_y:, :]
         Image.fromarray(bottom_half).show()
-        save = input("Save image? (y/n): ")
-        if save == "y":
-            save_image(bottom_half)
+        save_image(bottom_half)
 
     elif cp == 4:
         left_half = img[:, :center_x]
         Image.fromarray(left_half).show()
-        save = input("Save image? (y/n): ")
-        if save == "y":
-            save_image(left_half)
+        save_image(left_half)
 
     elif cp == 5:
         right_half = img[:, center_x:]
         Image.fromarray(right_half).show()
-        save = input("Save image? (y/n): ")
-        if save == "y":
-            save_image(right_half)
+        save_image(right_half)
 
     elif cp == 6:
         percents = int(input("Enter percents (%): "))
         crop = img[:int(h * (percents / 100)), :int(w * (percents / 100))]
         Image.fromarray(crop).show()
-        save = input("Save image? (y/n): ")
-        if save == "y":
-            save_image(crop)
+        save_image(crop)
 
     else:
         print("Invalid input!")
+
+def grayscale():
+    gray = np.mean(img, axis=2).astype(np.uint8)
+    Image.fromarray(gray).show()
+    return gray
+
+def inverted():
+    neg = 255 - img
+    Image.fromarray(neg).show()
+    return neg
+
+def threshold():
+    loaded_img = np.array(Image.open("image/demo/GTA VI(grayscale).jpg"))
+    threshold_point = 128
+    t_img = np.where(loaded_img > threshold_point, 255, 0).astype(np.uint8)
+    Image.fromarray(t_img).show()
+    return t_img
+
+def filters():
+    print("Type g for Grayscale Image")
+    print("Type i for Inverted Image")
+    print("Type t for threshold Image")
+
+    choice = input("Type : ")
+    if choice.lower() == "g":
+        g = grayscale()
+        save_image(g)
+    elif choice.lower() == "i":
+        i = inverted()
+        save_image(i)
+    elif choice.lower() == "t":
+        t = threshold()
+        save_image(t)
+    else:
+        print("Invalid input!")
+
